@@ -1,0 +1,32 @@
+{
+    "name": "@WahrscheinlichAnkommen/generate-db-journey-url",
+    "version": "1.0.4",
+    "description": "A straightforward tool for transforming DB Journey identifiers into user-friendly URLs.",
+    "main": "src/index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "prepare": "husky",
+        "check-lint": "eslint '**/*.js' && prettier --check '**/*.{js,md,json,yaml}'"
+    },
+    "author": "Paul Sut",
+    "type": "module",
+    "license": "MIT",
+    "devDependencies": {
+        "eslint": "^8.57.0",
+        "eslint-config-google": "^0.14.0",
+        "eslint-config-prettier": "^9.1.0",
+        "eslint-plugin-prettier": "^5.1.3",
+        "husky": "^9.0.11",
+        "lint-staged": "^15.2.2",
+        "prettier": "^3.2.5"
+    },
+    "lint-staged": {
+        "*.js": [
+            "eslint --fix",
+            "prettier --write"
+        ],
+        "*.{md,json,yaml}": [
+            "prettier --write"
+        ]
+    }
+}
