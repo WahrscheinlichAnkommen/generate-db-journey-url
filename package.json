@@ -6,8 +6,7 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "prepare": "husky",
-        "check-lint": "eslint . && prettier --check .",
-        "fix-lint": "eslint --fix . && prettier --write ."
+        "check-lint": "eslint '**/*.js' && prettier --check '**/*.{js,md,json,yaml}'"
     },
     "author": "Paul Sut",
     "license": "MIT",
@@ -25,7 +24,7 @@
             "eslint --fix",
             "prettier --write"
         ],
-        "*.{md,json}": [
+        "*.{md,json,yaml}": [
             "prettier --write"
         ]
     }
