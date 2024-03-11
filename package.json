@@ -1,6 +1,6 @@
 {
     "name": "@WahrscheinlichAnkommen/generate-db-journey-url",
-    "version": "1.0.4",
+    "version": "1.0.6",
     "description": "A straightforward tool for transforming DB Journey identifiers into user-friendly URLs.",
     "main": "src/index.js",
     "scripts": {
