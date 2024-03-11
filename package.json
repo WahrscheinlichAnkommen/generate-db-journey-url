@@ -5,7 +5,9 @@
     "main": "src/index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "prepare": "husky"
+        "prepare": "husky",
+        "check-lint": "eslint . && prettier --check .",
+        "fix-lint": "eslint --fix . && prettier --write ."
     },
     "author": "Paul Sut",
     "license": "MIT",
