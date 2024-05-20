@@ -14,7 +14,7 @@ npm install generate-db-journey-url
 import { generateDbJourneyUrl } from 'generate-db-journey-url';
 
 const refreshToken = 'your_refresh_token'; // should be something like 'T$A=1@O=Berlin Hbf@L=8011160@a=128@$A=1@O=Frankfurt(Main)Hbf@L=8000105@a=128@$202404201829$202404202244$ICE  877$$1$$$$$$'
-const url = await generateDbJourneyUrl(refreshToken);
+const url = await generateDbJourneyUrl(refreshToken, 'de');
 console.log(`Journey URL: ${url}`);
 ```
 
