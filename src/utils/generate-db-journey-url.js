@@ -62,14 +62,38 @@ const extractInfoFromToken = (refreshToken) => {
 };
 
 /**
+ * Returns the base URL with the desired locale. If specified locale is unknown, returns English URL.
+ * @param {string} locale The locale of the URL; currently supports: cs (Czech), da (Danish), de (German), en (Englisch), es (Spanish), fr (French), it (Italian), nl (Dutch), pl (Polish)
+ * @return {string} The base URL with specified locale (if valid) or fallback locale (English).
+ */
+const getUrlWithLocale = (locale) => {
+    const locales = ['cs', 'da', 'de', 'en', 'es', 'fr', 'it', 'nl'];
+
+    let url;
+    if (locale === 'de') {
+        url = 'https://www.bahn.de/buchung/start?';
+    } else if (locales.includes(locale)) {
+        url = `https://int.bahn.de/${locale}/buchung/start?`;
+    } else {
+        console.info(`Unknown locale ${locale}, using default URL`);
+        url = 'https://int.bahn.de/en/buchung/start?';
+    }
+
+    return url;
+};
+
+/**
  * Constructs and returns a journey URL from given refreshToken by extracting necessary info from it, making a backend
  * call using provided info, constructing URL params and returning constructed URL.
  *
  * @param {string} refreshToken - The token from which to get necessary data to construct journey url.
- * @return {Promise<string>} The constructed journey url.
+ * @param {string} lang - The locale of the URL; currently supports: cs (Czech), da (Danish), de (German), en (Englisch), es (Spanish), fr (French), it (Italian), nl (Dutch), pl (Polish)
+ * @return {Promise<string>} The constructed journey URL.
  * @throws {Error} Will throw an error if the asynchronous request failed.
  */
-export const generateDbJourneyUrl = async (refreshToken) => {
+export const generateDbJourneyUrl = async (refreshToken, lang = 'en') => {
+    const url = getUrlWithLocale(lang);
+
     const refreshTokenInfo = extractInfoFromToken(refreshToken);
 
     const payload = {
@@ -81,5 +105,5 @@ export const generateDbJourneyUrl = async (refreshToken) => {
 
     const vbid = await getRequestVbid(payload);
     const params = new URLSearchParams({ vbid: vbid });
-    return `https://int.bahn.de/en/buchung/start?${params.toString()}`;
+    return `${url}${params.toString()}`;
 };
